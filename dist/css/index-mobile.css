@@ -1,0 +1,15 @@
+@media screen and (orientation: portrait) {
+	/* 竖屏样式 */
+	.line {
+		flex-direction: column;
+		flex:0;
+	}
+	.line > iframe {
+		width: 100vw;
+		height:30vh;
+	}
+	footer{
+		flex-direction: column;
+	}
+	
+}

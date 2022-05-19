@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>在线PPT</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes='128x128'>
+    <meta name="author" content="KonghaYao">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+
+
+    <!-- Theme used for syntax highlighted code -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/styles/github.min.css" rel="stylesheet"
+        id="highlight-theme">
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/index-mobile.css">
+    <link href="css/input.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+</head>
+
+
+<body>
+
+    <div class='reveal'>
+        <div class="slides">
+            <section data-markdown data-separator-vertical="^- - -\r?\n" data-separator-notes="^Note:"
+                Xid='file'>
+
+            </section>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@3.14.0/dist/js-yaml.min.js"></script>
+<script type="module">
+    import fileUpload from './js/fileUpload.js'
+    window.onload = async function () {
+
+        try {
+            let params = Object.fromEntries(location.search.match(/[^?|&]+/g).map(i => i.split('=')))
+
+            if (params.hasOwnProperty('file')) {
+                let text = await fetch(params.file, {}).then(res => res.text());
+                let file = new File([text],params.file)
+                fileUpload(file)
+            } else {
+                location.href = 'input.html'
+            }
+        } catch (err) {
+            location.href = 'input.html'
+        }
+
+    }
+
+</script>
+
+</html>

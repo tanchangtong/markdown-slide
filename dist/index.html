@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes='128x128'>
+    <title>在线幻灯片</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+
+
+    <!-- Theme used for syntax highlighted code -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/styles/github.min.css" rel="stylesheet"
+        id="highlight-theme">
+
+        <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/index-mobile.css">
+    <link href="css/input.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <style>
+        
+        .drag-area {
+            height: 40vh;
+            width: 40vw;
+            
+            cursor: pointer;
+            transition: .5s;
+            display: flex;
+            box-sizing: border-box;
+            background-color: #46cee3;
+            color: #fff;
+            border: dashed 5px #fff;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .drag-area:hover {
+            color: #46cee3;
+            background-color: #fff;
+            border: dashed 5px#46cee3;
+        }
+
+        #input {
+            display: none;
+        }
+
+        body {
+            width: 100vw;
+        }
+
+        #inputBox {
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            border: 2px;
+            height: 100vh;
+            width: 100vw;
+            z-index: 100;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id='inputBox'>
+        
+        <div id='uploadBox' class="drag-area">
+            Markdown-Slide
+            <br>
+            请拖拽上传或者点击上传您的幻灯片
+        </div>
+        <input type="file" name="" id="input">
+    </div>
+    <div class='reveal' id="reveal">
+        <div class="slides">
+            <section data-markdown data-separator-vertical="\r?\n- - -\r?\n" data-separator-notes="^Note:" Xid='file'>
+
+            </section>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.5.0/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@3.14.0/dist/js-yaml.min.js"></script>
+<script type='module'>
+    import fileUpload from './js/fileUpload.js'
+
+    document.getElementById('input').addEventListener('change', function (e) {
+        const file = e.target.files[0]
+        fileUpload(file)
+    })
+    document.getElementById('uploadBox').addEventListener('drop', function (e) {
+        e.preventDefault();
+        console.log(e.dataTransfer.files)
+        const file = e.dataTransfer.files[0]
+        fileUpload(file)
+    })
+    document.getElementById('uploadBox').addEventListener('dragover', function (e) {
+        e.preventDefault()
+    })
+    document.getElementById('uploadBox').addEventListener('click', function (e) {
+        e.preventDefault()
+        document.getElementById('input').click()
+    })
+</script>
+
+
+
+</html>

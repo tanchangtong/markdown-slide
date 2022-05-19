@@ -1,0 +1,88 @@
+body{
+    display: flex;
+    flex-direction:row;
+}
+#auto{
+    font-family: none;
+    margin:1em 2em;
+    border-radius: 20px;
+    border:0;
+    font-size:19px;
+    outline-style:none;
+    resize: none;
+    flex:1;
+    padding:1em;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 13px #00000033;
+}
+.input{
+    
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    box-shadow: -4px -3px 15px #0000001f
+}
+.input > h1{
+    border-radius: 20px;
+    margin:1em 2em ;
+    line-height:60px;
+    text-align: center;
+    border-bottom: 0;
+    box-shadow: 0px 5px 13px #00000033;
+}
+.reveal{
+    box-shadow: 0 0  15px 7px #0000001f;
+}
+.vertical{
+    width:64vh;
+    height: 36vh;
+}
+.unVertical{
+    width:36vh;
+    height: 64vh;
+    
+}
+.button{
+    margin:2em 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+.button >button{
+    border-radius: 20px;
+    border:0;
+    background-color: #fff;
+    box-shadow: -4px -3px 15px #0000001f;
+    height:2.6em;
+    padding:0.3em 1.4em;
+    transition: all 1s;
+    outline-style:none;
+}
+.button >button:hover{
+     box-shadow:inset -4px -3px 15px #0000001f;
+}
+
+.right{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width:50vw;
+}
+@media screen and (orientation: portrait) {
+	/* 竖屏样式 */
+	body{
+        flex-direction: column;
+    }
+	.right{
+        width:100vw;
+        margin-bottom: 20px;
+    }
+    .vertical{
+        width:64vw;
+        height: 36vw;
+    }
+    .unVertical{
+       width:36vw;
+        height: 64vw;
+        
+    }
+}

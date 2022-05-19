@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>在线PPT</title>
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="128x128" />
+        <meta name="author" content="KonghaYao" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reset.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css" />
+
+        <!-- Theme used for syntax highlighted code -->
+        <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/styles/github.min.css" rel="stylesheet" id="highlight-theme" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/index-mobile.css" />
+        <link href="css/input.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" />
+
+        <link rel="stylesheet" href="css/auto.css" />
+    </head>
+
+    <body>
+        <div class="input">
+            <h1>markdown 渲染测试工具</h1>
+            <textarea name="" id="auto" cols="30" rows="10" spellcheck="false"></textarea>
+            <div class="button">
+                <button id="upload">刷新渲染</button>
+                <button id="screen">屏幕转向</button>
+                <button id="UPLOAD">上传代码</button>
+                <input type="file" id="INPUTUPLOAD" style="display: none" />
+                <button id="DOWNLOAD">下载代码</button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="vertical">
+                <div class="reveal"></div>
+            </div>
+        </div>
+        <a href="" download="Markdown-slide.md" style="display: none"></a>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@3.14.0/dist/js-yaml.min.js"></script>
+    <script type="module">
+        import fileUpload from "./js/fileUpload.js";
+        window.onload = async function () {
+            document.getElementById("auto").value =await fetch('https://cdn.jsdelivr.net/gh/KonghaYao/notuse/ppt/markdown.md').then(res=>res.text())
+
+            document.getElementById("upload").addEventListener("click", (e) => {
+                document.querySelector(".reveal").innerHTML = `<div class="slides">
+                    <section data-markdown data-separator-vertical="^- - -\r?\n" data-separator-notes="^Note:" Xid='file'>
+        
+                    </section>
+                </div>`;
+                let file = new File([document.getElementById("auto").value], "auto.md");
+                fileUpload(file);
+            });
+            document.getElementById("screen").addEventListener("click", function (e) {
+                let slide = document.querySelector(".vertical");
+                slide.classList.toggle("unVertical");
+                document.getElementById("upload").click();
+            });
+            document.getElementById("UPLOAD").addEventListener("click", function (e) {
+                document.getElementById("INPUTUPLOAD").click();
+            });
+            document.getElementById("INPUTUPLOAD").addEventListener("change", async function (e) {
+                document.querySelector(".reveal").innerHTML = `<div class="slides">
+                    <section data-markdown data-separator-vertical="^- - -\r?\n" data-separator-notes="^Note:" Xid='file'>
+        
+                    </section>
+                </div>`;
+                document.getElementById("auto").value = await e.target.files[0].text();
+                fileUpload(e.target.files[0]);
+            });
+            document.getElementById("DOWNLOAD").addEventListener("click", function (e) {
+                let text = document.getElementById("auto").value;
+                let file = new Blob([text]);
+                let url = URL.createObjectURL(file);
+                let a = document.querySelector("a[download]");
+                a.href = url;
+                a.click();
+            });
+            document.getElementById("upload").click();
+        };
+    </script>
+</html>

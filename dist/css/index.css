@@ -1,0 +1,131 @@
+* {
+    cursor: default;
+}
+
+body,
+html {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 0px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 0px;
+    scrollbar-arrow-color: red;
+}
+
+
+
+main {
+    display: flex;
+
+}
+
+.line {
+    flex: 1;
+    display: flex;
+}
+
+.introduce {
+    flex: 1;
+    border-right:3px solid #bbbbbb ;
+}
+
+.markdown {
+    width: 30vw;
+    height: 77vh;
+}
+
+footer {
+    flex: 1;
+    display: flex;
+    background-color: #000;
+    color:#fff;
+}
+
+.pic {
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 70px;
+    max-height: 70px;
+    width: 7vw;
+    height: 7vw;
+    overflow: hidden;
+    border: 3px solid #000;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.imgs img{
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 70px;
+    max-height: 70px;
+    width: 7vw;
+    height: 7vw;
+    border:3px solid #d9d9d957;
+    margin:1vw;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.our{
+    margin:12px 20px;
+}
+.imgs img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.imgs{
+    max-width:60vh;
+    display: flex;
+    align-items: center;
+}
+.name{
+    margin:20px 0;
+    flex: 1;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.developers{
+    display: flex;
+    border-bottom: 1px solid #fff;
+    margin-top:2px;
+    
+}
+.developers :nth-child(1){
+    flex: 1
+}
+.name  img{
+    width:120px;
+}
+.name > div{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.links{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+.links >a{
+    text-decoration:none;
+
+    color:#fff;
+    cursor: pointer;
+
+    border-radius: 20px;
+    border:2px solid #fff;
+    padding:0.3em 1.4em;
+    margin: 5px;
+}
